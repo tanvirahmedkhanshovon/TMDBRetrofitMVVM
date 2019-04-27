@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TMDBRetrofitApp</string>
+    <string name="api_key">e75f4d39b0d376a5e1f84b4f9497b6ee</string>
+    <string name="title_activity_additional_movie_details">AdditionalMovieDetails</string>
+</resources>
