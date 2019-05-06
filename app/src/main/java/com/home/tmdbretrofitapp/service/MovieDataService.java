@@ -10,4 +10,6 @@ public interface MovieDataService {
 
     @GET("movie/popular")
     Call<MovieDBResponse> getPopularMovies(@Query("api_key")String api_key);
+    @GET("movie/popular")
+    Call<MovieDBResponse> getPopularMoviesWithPaging(@Query("api_key")String api_key,@Query("page")long pageNumber);
 }

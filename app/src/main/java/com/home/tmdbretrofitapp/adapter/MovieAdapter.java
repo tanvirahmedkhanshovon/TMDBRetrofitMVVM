@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,14 +23,14 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+public class MovieAdapter extends PagedListAdapter<Movie,MovieAdapter.MovieViewHolder> {
 
     Context context;
-    ArrayList<Movie> movieArrayList;
 
-    public MovieAdapter(Context context, ArrayList<Movie> movieArrayList) {
+    public MovieAdapter(Context context) {
+        super(Movie.callback);
         this.context = context;
-        this.movieArrayList = movieArrayList;
+
     }
 
     @NonNull
@@ -44,7 +45,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
 
-        Movie movie = movieArrayList.get(position);
+        Movie movie = getItem(position);
 
        // movie.setPosterPath(imagePath);
         holder.movieListItemBinding.setMovies(movie);
@@ -53,10 +54,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     }
 
-    @Override
-    public int getItemCount() {
-        return movieArrayList != null ? movieArrayList.size() : 0;
-    }
+
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
 
@@ -75,7 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
                     int poistion = getAdapterPosition();
                     if(poistion != RecyclerView.NO_POSITION) {
-                        Movie selectedMovie = movieArrayList.get(poistion);
+                        Movie selectedMovie = getItem(poistion);
                         Intent intent = new Intent(context,AdditionalMovieDetails.class);
                         intent.putExtra("movie",selectedMovie);
                         context.startActivity(intent);
