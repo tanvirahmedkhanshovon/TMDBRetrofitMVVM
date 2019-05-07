@@ -11,7 +11,6 @@ import androidx.paging.PagedList;
 import com.home.tmdbretrofitapp.model.Movie;
 import com.home.tmdbretrofitapp.model.MovieDataSource;
 import com.home.tmdbretrofitapp.model.MovieDataSourceFactory;
-import com.home.tmdbretrofitapp.model.MovieRepository;
 import com.home.tmdbretrofitapp.service.MovieDataService;
 import com.home.tmdbretrofitapp.service.RetrofitInstance;
 
@@ -20,18 +19,17 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class MainActivityViewModel extends AndroidViewModel {
-    //private MovieRepository movieRepository;
-    private LiveData<MovieDataSource> movieDataSourceLiveData;
+
     private Executor executor;
     private LiveData<PagedList<Movie>> moviesPagedList;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
-       // movieRepository = new MovieRepository(application);
+
 
         MovieDataService movieDataService = RetrofitInstance.getService();
         MovieDataSourceFactory movieDataSourceFactory = new MovieDataSourceFactory(movieDataService, application);
-        movieDataSourceLiveData = movieDataSourceFactory.getMutableLiveData();
+
         PagedList.Config config = (new PagedList.Config.Builder())
                 .setEnablePlaceholders(true)
                 .setInitialLoadSizeHint(10)
