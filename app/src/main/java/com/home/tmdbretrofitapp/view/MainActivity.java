@@ -84,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(movieAdapter);
         movieAdapter.notifyDataSetChanged();
 
+        if(swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
+
 
     }
 

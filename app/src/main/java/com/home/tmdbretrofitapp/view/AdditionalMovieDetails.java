@@ -27,8 +27,6 @@ public class AdditionalMovieDetails extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         movieMainBinding = DataBindingUtil.setContentView(this,R.layout.movie_main);
